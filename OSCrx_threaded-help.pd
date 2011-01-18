@@ -1,0 +1,259 @@
+#N canvas 707 22 1058 830 10;
+#X obj 271 237 OSCtx;
+#X text 341 342 1);
+#X text 403 374 2);
+#X text 644 341 1);
+#X text 703 372 2);
+#X text 234 270 (default is UDP);
+#X obj 85 598 cnv 15 700 150 empty empty OSCrx_(reception): 10 10 0
+14 -228856 -258113 0;
+#X obj 92 657 OSCrx 9000;
+#X obj 91 634 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 203 657 OSCrx 9000;
+#X text 111 633 <- a bang to any OSCrx prints status info;
+#X obj 678 409 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 363 411 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 252 24 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X text 273 25 <- bang prints status to the Pd window;
+#X msg 357 97 /foo/sheefa 1 2 3;
+#X text 493 99 <- send messages like this;
+#X obj 23 20 cnv 15 25 25 empty empty OSCtx_(transmission): 10 10 0
+14 -262144 -258113 0;
+#X text 95 716 (note ability to have multiple instances!);
+#X obj 706 441 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 271 256 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 406 442 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X msg 380 137 [;
+#X msg 380 159 /a/bundle has started;
+#X msg 380 179 /adding/some has message;
+#X msg 380 199 ];
+#X text 82 320 TCP support:;
+#X text 413 138 <- start an OSC bundle with this;
+#X text 413 200 <- close the bundle and send;
+#X msg 137 114 disconnect;
+#X obj 706 421 OSCtx;
+#X obj 406 423 OSCtx;
+#X msg 367 343 setAddress 255.255.255.255 9000;
+#X msg 667 341 setAddress 224.0.0.100 9009;
+#X text 432 634 Multicast receiver:;
+#X obj 638 649 OSCrx 9001 tcp;
+#X text 81 342 1);
+#X text 143 374 2);
+#X obj 103 411 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
+-1 -1;
+#X obj 147 456 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 11080
+11080;
+#X obj 146 423 OSCtx tcp;
+#X msg 423 374 /some/broadcast message;
+#X msg 722 372 /some/multicast message;
+#X text 631 623 TCP receiver:;
+#X obj 638 675 print TCP_MSG;
+#X text 286 56 1);
+#X text 336 97 2);
+#X text 497 56 <- set destination host and port;
+#X text 514 68 (could be broadcast/multicast);
+#X text 343 320 Broadcast support:;
+#X text 644 318 Multicast support:;
+#X msg 307 56 setAddress localhost 9000;
+#X msg 108 342 setAddress localhost 9001;
+#X obj 93 683 print OSCrx-1;
+#X obj 203 683 print OSCrx-2;
+#X obj 433 656 OSCrx 224.0.0.100 9009;
+#X obj 433 683 print Multicast_MSG;
+#X obj 706 177 cnv 15 175 60 empty empty empty 20 12 0 14 -233017 -66577
+0;
+#N canvas 476 43 856 767 MESSAGE-HELPERS 0;
+#X obj 17 295 cnv 15 800 20 empty empty Dealing.With.Messages: 10 10
+1 14 -233017 -66577 0;
+#X obj 17 15 cnv 15 800 20 empty empty Forming.Messages: 10 10 1 14
+-233017 -66577 0;
+#X obj 140 154 cnv 15 75 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 63 241 cnv 15 140 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 621 121 cnv 15 70 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 89 448 cnv 15 105 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 626 123 OSCsplit;
+#X msg 598 78 /aa/blah/cc dee eee eff;
+#X text 544 53 split the message into 2 Pd-style lists:;
+#X obj 692 158 print OSC_SELECTOR;
+#X obj 612 158 print ARGS;
+#X text 607 183 (Note: reversed order!);
+#X obj 68 265 print;
+#X msg 25 50 any arguments 1 2 3;
+#X msg 225 189 symbol /newPrefix;
+#X obj 68 243 OSCprepend /prefix;
+#X text 64 74 OSC-type symbols get appended to the end of the OSC path:
+;
+#X msg 80 96 /additional/path 1 2 3;
+#X text 354 191 <- set the OSC path;
+#X msg 146 133 Any list /converts 2 OSC path;
+#X msg 38 353 /foo 1 2 3;
+#X msg 64 379 /foo/bar 1 2 3;
+#X msg 94 404 /sheefa 1 2 3;
+#X msg 213 380 symbol /sheefa;
+#X obj 145 156 OSCsymbol;
+#X text 216 157 <- convert lists into an OSC symbol;
+#X obj 200 686 cnv 15 140 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 32 687 cnv 15 110 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 456 327 cnv 15 360 140 empty empty About.Wildcards: 10 12 0
+14 -262130 -66577 0;
+#N canvas 221 136 464 376 ABOUT_WILDCARDS 0;
+#X text 50 62 * matches zero or more characters;
+#X text 51 75 ? matches any single character;
+#X text 113 256 EXAMPLES:;
+#X text 15 103 [^set] matches any character NOT in the set;
+#X text 22 89 [set] matches any character in the set;
+#X text 18 177 A set is a group of characters or ranges \, where a
+range is written as two characters seperated with a hyphen. Eg \, a-z
+denotes all characters between a to z inclusive.;
+#X text 16 131 []set] matches a close bracket and any character in
+the set;
+#X text 16 117 [-set] matches a hyphen and any character in the set
+;
+#X text 87 283 a*c = ac abc abbc ...;
+#X text 87 296 a?c = acc abc aXc ...;
+#X text 59 310 a[a-z]c = aac abc acc ...;
+#X text 52 324 a[-a-z]c = a-c aac abc ...;
+#X text 20 18 ABOUT OSC WILDCARDS:;
+#X restore 593 437 pd ABOUT_WILDCARDS;
+#X obj 80 626 cnv 15 200 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 33 688 OSCparse /*/msg;
+#X msg 59 553 /namespace/channel/3/msg 1 2 3;
+#X obj 84 628 OSCparse /namespace/channel;
+#X obj 203 688 OSCparse /[1-4]/msg;
+#X msg 88 573 /namespace/channel/5/msg 1 2 3;
+#X obj 203 712 print B;
+#X obj 33 714 print A;
+#X text 103 593 Chaining multiple OSCparse objects is useful to differentiate
+between namespaces:;
+#X obj 84 477 print MATCH!;
+#X obj 192 477 print NO_MATCH;
+#X msg 239 218 symbol newPrefix;
+#X text 361 220 <- note: slash gets prepended automatically;
+#X msg 223 403 symbol sheefa;
+#X text 32 519 right outlet: unmatched messages;
+#X text 32 505 left outlet: matched or partially-matched OSC messages
+;
+#X obj 94 450 OSCparse /foo;
+#X obj 458 678 cnv 15 280 20 empty empty empty 20 12 0 14 -261234 -66577
+0;
+#X obj 463 680 OSCrouter /foo/alpha /foo/beta /sheefa;
+#X msg 445 521 /foo/alpha a b c;
+#X msg 504 645 /somebody else;
+#X obj 464 720 print A;
+#X obj 726 720 print NO_MATCH;
+#X obj 638 720 print C;
+#X obj 550 720 print B;
+#X text 18 330 Parse OSC messages like this:;
+#X text 461 356 1) wildcards cannot be SENT to [OSCparse] \,;
+#X text 461 396 2) wildcards cannot be arguments for [OSCrouter] \,
+;
+#X text 210 360 set the OSC path:;
+#X text 232 420 (don't need slash);
+#X text 482 410 but they can be sent in the routed messages;
+#X text 439 498 Route messages like this:;
+#X text 461 436 3) wildcard info:;
+#X msg 463 545 /foo/* this goes to both;
+#X msg 479 574 list /sheefa 1 2 3;
+#X text 482 369 but they can be used in the parsing argument;
+#X msg 490 596 /sheefa;
+#X text 551 597 <- bang sent for no args;
+#X text 617 574 <- list selector is okay;
+#X text 589 620 <- no partial matches (use OSCparse);
+#X msg 498 619 /sheefa/foo;
+#X text 645 545 <- wildcard acceptable;
+#X connect 6 0 10 0;
+#X connect 6 1 9 0;
+#X connect 7 0 6 0;
+#X connect 13 0 15 0;
+#X connect 14 0 15 1;
+#X connect 15 0 12 0;
+#X connect 17 0 15 0;
+#X connect 19 0 24 0;
+#X connect 20 0 46 0;
+#X connect 21 0 46 0;
+#X connect 22 0 46 0;
+#X connect 23 0 46 1;
+#X connect 24 0 15 1;
+#X connect 31 0 37 0;
+#X connect 32 0 33 0;
+#X connect 33 0 31 0;
+#X connect 33 0 34 0;
+#X connect 34 0 36 0;
+#X connect 35 0 33 0;
+#X connect 41 0 15 1;
+#X connect 43 0 46 1;
+#X connect 46 0 39 0;
+#X connect 46 1 40 0;
+#X connect 48 0 51 0;
+#X connect 48 1 54 0;
+#X connect 48 2 53 0;
+#X connect 48 3 52 0;
+#X connect 49 0 48 0;
+#X connect 50 0 48 0;
+#X connect 63 0 48 0;
+#X connect 64 0 48 0;
+#X connect 66 0 48 0;
+#X connect 70 0 48 0;
+#X restore 725 206 pd MESSAGE-HELPERS;
+#X text 714 188 For creating messages:;
+#X msg 163 372 /tcp/msg message;
+#X obj 206 445 print tcp_response;
+#X msg 86 520 setAddress localhost \$1;
+#X obj 54 481 sel 0;
+#X text 145 470 0 == disconnect;
+#X text 145 486 > 0 is the tcp-rx-portNo;
+#X obj 63 557 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144 -1
+-1;
+#X obj 88 575 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 13422
+13422;
+#X obj 87 553 OSCtx tcp;
+#X msg 263 521 /tcp/msg SOME OTHER MESSAGE;
+#X msg 175 395 disconnect;
+#X connect 0 0 20 0;
+#X connect 7 0 53 0;
+#X connect 8 0 7 0;
+#X connect 9 0 54 0;
+#X connect 11 0 30 0;
+#X connect 12 0 31 0;
+#X connect 13 0 0 0;
+#X connect 15 0 0 0;
+#X connect 22 0 0 0;
+#X connect 23 0 0 0;
+#X connect 24 0 0 0;
+#X connect 25 0 0 0;
+#X connect 29 0 0 0;
+#X connect 30 0 19 0;
+#X connect 31 0 21 0;
+#X connect 32 0 31 0;
+#X connect 33 0 30 0;
+#X connect 35 0 44 0;
+#X connect 38 0 40 0;
+#X connect 40 0 39 0;
+#X connect 40 0 63 0;
+#X connect 40 1 61 0;
+#X connect 41 0 31 0;
+#X connect 42 0 30 0;
+#X connect 51 0 0 0;
+#X connect 52 0 40 0;
+#X connect 55 0 56 0;
+#X connect 60 0 40 0;
+#X connect 62 0 68 0;
+#X connect 63 1 62 0;
+#X connect 66 0 68 0;
+#X connect 68 0 67 0;
+#X connect 69 0 68 0;
+#X connect 70 0 40 0;
