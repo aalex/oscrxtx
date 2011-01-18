@@ -2,5 +2,5 @@
 #N canvas 718 357 420 300 META 0;
 #X text 10 10 VERSION 0.3.4;
 #X text 10 25 AUTHOR mike@mikewoz.com;
-#X text 13 41 NAME OSCrxtx;
+#X text 13 41 NAME oscrxtx;
 #X restore 10 10 pd META;

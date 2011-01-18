@@ -1,2 +1,5 @@
 *.o
 *.pd_linux
+OSCrxtx-*.*.*
+*tar.gz
+
