@@ -206,15 +206,15 @@ CFLAGS += $(OPT_CFLAGS)
 
 all: $(SOURCES:.c=.$(EXTENSION))
 
-%.o: %.c
-	$(CC) $(CFLAGS) -o "$*.o" -c "$*.c"
+%.o: %.cpp
+	$(CC) $(CFLAGS) -o "$*.o" -c "$*.cpp"
 
 %.$(EXTENSION): %.o
 	$(CC) $(LDFLAGS) -o "$*.$(EXTENSION)" "$*.o"  $(LIBS)
 	chmod a-x "$*.$(EXTENSION)"
 
 # this links everything into a single binary file
-$(LIBRARY_NAME): $(SOURCES:.c=.o) $(LIBRARY_NAME).o
+$(LIBRARY_NAME): $(SOURCES:.cpp=.o) $(LIBRARY_NAME).o
 	$(CC) $(LDFLAGS) -o $(LIBRARY_NAME).$(EXTENSION) $(SOURCES:.c=.o) $(LIBRARY_NAME).o $(LIBS)
 	chmod a-x $(LIBRARY_NAME).$(EXTENSION)
 
@@ -263,8 +263,8 @@ install-manual:
 
 
 clean:
-	-rm -f -- $(SOURCES:.c=.o) $(SOURCES_LIB:.c=.o)
-	-rm -f -- $(SOURCES:.c=.$(EXTENSION))
+	-rm -f -- $(SOURCES:.cpp=.o) $(SOURCES_LIB:.cpp=.o)
+	-rm -f -- $(SOURCES:.cpp=.$(EXTENSION))
 	-rm -f -- $(LIBRARY_NAME).o
 	-rm -f -- $(LIBRARY_NAME).$(EXTENSION)
 
@@ -349,3 +349,4 @@ showsetup:
 	@echo "pkglibdir: $(pkglibdir)"
 	@echo "DISTDIR: $(DISTDIR)"
 	@echo "ORIGDIR: $(ORIGDIR)"
+
