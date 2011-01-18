@@ -5,14 +5,14 @@ LIBRARY_NAME = oscrxtx
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically
-SOURCES = mycobject.c
+SOURCES = OSCparse.cpp OSCprepend.cpp OSCrouter.cpp OSCrx.cpp OSCrx_threaded.cpp OSCsplit.cpp OSCsymbol.cpp OSCtx.cpp
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
-PDOBJECTS = mypdobject.pd
+PDOBJECTS = 
 
 # example patches and related files, in the 'examples' subfolder
-EXAMPLES = bothtogether.pd
+EXAMPLES = send_receive.pd
 
 # manuals and related files, in the 'manual' subfolder
 MANUAL = manual.txt
