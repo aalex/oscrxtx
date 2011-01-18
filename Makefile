@@ -1,7 +1,7 @@
 ## Pd library template version 1.0.7
 # For instructions on how to use this template, see:
 #  http://puredata.info/docs/developer/MakefileTemplate
-LIBRARY_NAME = template
+LIBRARY_NAME = oscrxtx
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically
@@ -32,9 +32,9 @@ EXTRA_DIST =
 #------------------------------------------------------------------------------#
 
 # -I"$(PD_INCLUDE)/pd" supports the header location for 0.43
-CFLAGS = -I"$(PD_INCLUDE)/pd" -Wall -W -g
-LDFLAGS =  
-LIBS = 
+CFLAGS = -I"$(PD_INCLUDE)/pd" -Wall -W -g `pkg-config --cflags liblo`
+LDFLAGS = 
+LIBS = `pkg-config --libs liblo`
 
 #------------------------------------------------------------------------------#
 #
