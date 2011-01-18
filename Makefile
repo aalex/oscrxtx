@@ -197,14 +197,14 @@ ifeq (MINGW,$(findstring MINGW,$(UNAME)))
 endif
 
 # in case somebody manually set the HELPPATCHES above
-HELPPATCHES ?= $(SOURCES:.c=-help.pd) $(PDOBJECTS:.pd=-help.pd)
+HELPPATCHES ?= $(SOURCES:.cpp=-help.pd) $(PDOBJECTS:.pd=-help.pd)
 
 CFLAGS += $(OPT_CFLAGS)
 
 
 .PHONY = install libdir_install single_install install-doc install-exec install-examples install-manual clean dist etags $(LIBRARY_NAME)
 
-all: $(SOURCES:.c=.$(EXTENSION))
+all: $(SOURCES:.cpp=.$(EXTENSION))
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -o "$*.o" -c "$*.cpp"
@@ -215,7 +215,7 @@ all: $(SOURCES:.c=.$(EXTENSION))
 
 # this links everything into a single binary file
 $(LIBRARY_NAME): $(SOURCES:.cpp=.o) $(LIBRARY_NAME).o
-	$(CC) $(LDFLAGS) -o $(LIBRARY_NAME).$(EXTENSION) $(SOURCES:.c=.o) $(LIBRARY_NAME).o $(LIBS)
+	$(CC) $(LDFLAGS) -o $(LIBRARY_NAME).$(EXTENSION) $(SOURCES:.cpp=.o) $(LIBRARY_NAME).o $(LIBS)
 	chmod a-x $(LIBRARY_NAME).$(EXTENSION)
 
 install: libdir_install
@@ -227,8 +227,8 @@ libdir_install: $(SOURCES:.c=.$(EXTENSION)) install-doc install-examples install
 	$(INSTALL_DATA) $(LIBRARY_NAME)-meta.pd \
 		$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
 	test -z "$(strip $(SOURCES))" || (\
-		$(INSTALL_PROGRAM) $(SOURCES:.c=.$(EXTENSION)) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME) && \
-		$(STRIP) $(addprefix $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/,$(SOURCES:.c=.$(EXTENSION))))
+		$(INSTALL_PROGRAM) $(SOURCES:.cpp=.$(EXTENSION)) $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME) && \
+		$(STRIP) $(addprefix $(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)/,$(SOURCES:.cpp=.$(EXTENSION))))
 	test -z "$(strip $(PDOBJECTS))" || \
 		$(INSTALL_DATA) $(PDOBJECTS) \
 			$(DESTDIR)$(objectsdir)/$(LIBRARY_NAME)
