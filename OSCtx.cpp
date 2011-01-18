@@ -20,6 +20,8 @@
 #include "lo/lo.h"
 #include "lo/lo_lowlevel.h"
 
+#define UNUSED(x) ((void) (x))
+
 // The following is support for Pd polling functions:
 typedef void (*t_fdpollfn)(void *ptr, int fd);
 extern "C" void sys_addpollfn(int fd, t_fdpollfn fn, void *ptr);
@@ -103,17 +105,18 @@ std::string OSCtx_getIPaddress()
 	return IPaddress;
 }
 
-static void OSCtx_poll(lo_server *s, int sockfd)
-{
-	// This function checks if liblo has any pending messages and
-	// dispatches the OSCtx_liblo_callback() method if one is found.
-
-	lo_server_recv_noblock(s, 0); // 0 timeout
-}
+// static void OSCtx_poll(lo_server *s, int sockfd)
+// {
+// 	// This function checks if liblo has any pending messages and
+// 	// dispatches the OSCtx_liblo_callback() method if one is found.
+// 
+// 	lo_server_recv_noblock(s, 0); // 0 timeout
+// }
 
 static int OSCtx_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
 {
 	t_OSCtx *x = (t_OSCtx*) user_data;
+    UNUSED(data);
 
 	/*
 	printf("************ OSCtx got message on outgoing port (%s): %s\n",lo_server_get_url(x->srvr), (char*)path);
@@ -150,7 +153,7 @@ static int OSCtx_liblo_callback(const char *path, const char *types, lo_arg **ar
 
 	// output a list with the path as the selector:
 	outlet_anything(x->outlet_recv, gensym((char*)path), argc, outAtoms);
-
+    return 1; // pass it to other callbacks if any
 }
 
 static void OSCtx_timed_poll(t_OSCtx *x)
@@ -481,6 +484,7 @@ static void OSCtx_senddelay(t_OSCtx *x, t_symbol *OSCpath, t_floatarg del)
 
 static void *OSCtx_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
 	t_OSCtx *x = (t_OSCtx *) pd_new(OSCtx_class);
 
 	x->bundleOpen = false;

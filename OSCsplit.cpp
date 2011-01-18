@@ -2,7 +2,7 @@
 #include "m_pd.h"
 
 using namespace std;
-
+#define UNUSED(x) ((void) (x))
 	
 static t_class *OSCsplit_class;
 
@@ -88,7 +88,7 @@ static void OSCsplit_anything(t_OSCsplit *x, t_symbol *s, int argc, t_atom *argv
 		// replace remaining slashes with spaces
 		OSCpath.replace(index, 1, " ");
 	}
-	int numTokens;
+	int numTokens = 0;
 	t_atom *OSCatoms = atomsFromString(OSCpath, numTokens);
 			
 	if (numTokens)
@@ -105,6 +105,9 @@ static void OSCsplit_anything(t_OSCsplit *x, t_symbol *s, int argc, t_atom *argv
 
 static void *OSCsplit_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
+    UNUSED(argc);
+    UNUSED(argv);
 	t_OSCsplit *x = (t_OSCsplit *)pd_new(OSCsplit_class);
 
 	x->leftOutlet = outlet_new(&x->x_obj, &s_list);
@@ -115,7 +118,7 @@ static void *OSCsplit_new(t_symbol *s, int argc, t_atom *argv)
 
 void OSCsplit_free(t_OSCsplit *x)
 {
-
+    UNUSED(x);
 }
 
 extern "C" void OSCsplit_setup(void)

@@ -5,7 +5,7 @@
 #include "m_pd.h"
 #include "lo/lo.h"
 #include "lo/lo_lowlevel.h"
-
+#define UNUSED(x) ((void) (x))
 
 using namespace std;
 
@@ -53,7 +53,7 @@ static void OSCrouter_route(t_OSCrouter *x, t_symbol *s, int argc, t_atom *argv)
 	
 	// okay - we have something to match
 	bool match = false;
-	for (int i=0; i<x->selectors.size(); i++)
+	for (unsigned int i=0; i<x->selectors.size(); i++)
 	{
 		if (lo_pattern_match(x->selectors[i]->s_name, pathToMatch.c_str()))
 		{
@@ -79,6 +79,7 @@ static void OSCrouter_route(t_OSCrouter *x, t_symbol *s, int argc, t_atom *argv)
 
 static void *OSCrouter_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
 	t_OSCrouter *x = (t_OSCrouter *)pd_new(OSCrouter_class);
 
 	for (int i=0; i<argc; i++)
@@ -110,7 +111,7 @@ static void *OSCrouter_new(t_symbol *s, int argc, t_atom *argv)
 
 void OSCrouter_free(t_OSCrouter *x)
 {
-
+    UNUSED(x);
 }
 
 extern "C" void OSCrouter_setup(void)

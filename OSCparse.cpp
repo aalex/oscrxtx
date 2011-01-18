@@ -5,6 +5,7 @@
 #include "lo/lo.h"
 #include "lo/lo_lowlevel.h"
 
+#define UNUSED(x) ((void) (x))
 
 using namespace std;
 
@@ -122,6 +123,7 @@ static void OSCparse_set(t_OSCparse *x, t_symbol *s)
 
 static void *OSCparse_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
 	t_OSCparse *x = (t_OSCparse *)pd_new(OSCparse_class);
 
 	if ((argc==1) && (argv[0].a_type == A_SYMBOL) && (argv[0].a_w.w_symbol->s_name[0] == '/'))
@@ -147,7 +149,7 @@ static void *OSCparse_new(t_symbol *s, int argc, t_atom *argv)
 
 void OSCparse_free(t_OSCparse *x)
 {
-
+    UNUSED(x);
 }
 
 extern "C" void OSCparse_setup(void)

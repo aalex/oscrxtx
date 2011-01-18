@@ -12,7 +12,7 @@
 
 #include <cstdio>  // added by ZS. to work with Ubuntu 9.1
 
-
+#define UNUSED(x) ((void) (x))
 
 #include "m_pd.h"
 //#include "s_stuff.h"
@@ -155,6 +155,7 @@ typedef struct _OSCrx
 // format from the correct instance, held in the user_data pointer.
 static int OSCrx_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
 {
+    UNUSED(data);
 
 #ifdef OSC_DEBUG
 	printf("************ OSCrx_liblo_callback() got message: %s\n", (char*)path);
@@ -206,6 +207,7 @@ static int OSCrx_liblo_callback(const char *path, const char *types, lo_arg **ar
 
 static void OSCrx_bang(t_OSCrx *x)
 {
+    UNUSED(x);
 	post("The following %d OSC servers are listening for messages:", g_OSCrx_servers.size());
 	for (g_iter = g_OSCrx_servers.begin(); g_iter != g_OSCrx_servers.end(); g_iter++)
 	{
@@ -216,6 +218,7 @@ static void OSCrx_bang(t_OSCrx *x)
 
 void OSCrx_poll(lo_server *s, int sockfd)
 {
+    UNUSED(sockfd);
 	// This function checks if liblo has any pending messages and
 	// dispatches a matching method if one is found.
 	//
@@ -227,6 +230,7 @@ void OSCrx_poll(lo_server *s, int sockfd)
 
 static void *OSCrx_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
 	t_OSCrx *x = (t_OSCrx *) pd_new(OSCrx_class);
 	
 	int port;

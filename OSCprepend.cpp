@@ -3,7 +3,7 @@
 
 using namespace std;
 
-
+#define UNUSED(x) ((void) (x))
 
 static t_class *OSCprepend_class;
 
@@ -18,7 +18,7 @@ static void OSCprepend_anything(t_OSCprepend *x, t_symbol *s, int argc, t_atom *
 {
 	//int offset = 0;
 	t_symbol *finalPrefix = x->x_prefix;
-	t_atom *atomList;
+	t_atom *atomList = argv; // default 
 	
 	
 	if (s->s_name[0] == '/')
@@ -87,6 +87,7 @@ static void OSCprepend_set(t_OSCprepend *x, t_symbol *s)
 
 static void *OSCprepend_new(t_symbol *s, int argc, t_atom *argv)
 {
+    UNUSED(s);
 	t_OSCprepend *x = (t_OSCprepend *)pd_new(OSCprepend_class);
 	x->x_prefix = gensym("");
 
