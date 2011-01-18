@@ -16,7 +16,7 @@ typedef struct _OSCprepend
 
 static void OSCprepend_anything(t_OSCprepend *x, t_symbol *s, int argc, t_atom *argv)
 {
-	int offset = 0;
+	//int offset = 0;
 	t_symbol *finalPrefix = x->x_prefix;
 	t_atom *atomList;
 	
