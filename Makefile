@@ -23,7 +23,7 @@ MANUAL = manual.txt
 # automatically included
 EXTRA_DIST = 
 
-
+CC = g++
 
 #------------------------------------------------------------------------------#
 #
