@@ -319,15 +319,15 @@ dist: $(DISTDIR)
 		done
 	tar --exclude-vcs -czpf $(DISTDIR).tar.gz $(DISTDIR)
 
-# make a Debian source package
-dpkg-source:
-	debclean
-	make distclean dist
-	mv $(DISTDIR) $(ORIGDIR)
-	tar --exclude-vcs -czpf ../$(ORIGDIR).orig.tar.gz $(ORIGDIR)
-	rm -f -- $(DISTDIR).tar.gz
-	rm -rf -- $(DISTDIR) $(ORIGDIR)
-	cd .. && dpkg-source -b $(LIBRARY_NAME)
+# # make a Debian source package
+# dpkg-source:
+# 	# debclean
+# 	make distclean dist
+# 	mv $(DISTDIR) $(ORIGDIR)
+# 	tar --exclude-vcs -czpf ../$(ORIGDIR).orig.tar.gz $(ORIGDIR)
+# 	rm -f -- $(DISTDIR).tar.gz
+# 	rm -rf -- $(DISTDIR) $(ORIGDIR)
+# 	#cd .. && dpkg-source -b $(LIBRARY_NAME)
 
 etags:
 	etags *.h $(SOURCES) ../../pd/src/*.[ch] /usr/include/*.h /usr/include/*/*.h
