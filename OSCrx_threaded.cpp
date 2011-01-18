@@ -14,6 +14,7 @@
 #include "m_pd.h"
 #include "lo/lo.h"
 
+#define UNUSED(x) ((void) (x))
 
 using namespace std;
 
@@ -62,6 +63,7 @@ typedef struct _OSCrx
 // format from the correct instance, held in the user_data pointer.
 int OSCrx_liblo_callback(const char *path, const char *types, lo_arg **argv, int argc, void *data, void *user_data)
 {
+    UNUSED(data);
 	/*
 	printf("************ OSCrx_liblo_callback() got message: %s\n", (char*)path);
 	for (int i=0; i<argc; i++) {
