@@ -410,5 +410,4 @@ extern "C" void OSCrx_setup(void)
 	g_OSCrx_servers.clear();
 	OSCrx_class = class_new(gensym("OSCrx"), (t_newmethod)OSCrx_new, (t_method)OSCrx_free, sizeof(t_OSCrx), CLASS_DEFAULT, A_GIMME, 0);
     class_addbang(OSCrx_class, (t_method)OSCrx_bang);
-	class_sethelpsymbol(OSCrx_class, gensym("help-OSCrxtx"));
 }

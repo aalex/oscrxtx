@@ -537,6 +537,5 @@ extern "C" void OSCtx_setup(void)
 	class_addmethod(OSCtx_class, (t_method) OSCtx_senddelay, gensym("send"), A_SYMBOL, A_DEFFLOAT, 0);
 	class_addanything(OSCtx_class, (t_method) OSCtx_send); 
 	class_addbang(OSCtx_class, (t_method) OSCtx_info); 
-	class_sethelpsymbol(OSCtx_class, gensym("help-OSCrxtx"));
 	//post("OSCtx polling enabled");
 }

@@ -110,5 +110,4 @@ extern "C" void OSCprepend_setup(void)
 	OSCprepend_class = class_new(gensym("OSCprepend"), (t_newmethod)OSCprepend_new, 0, sizeof(t_OSCprepend), 0, A_GIMME, 0);
 	class_addanything(OSCprepend_class, (t_method) OSCprepend_anything);
 	class_addmethod(OSCprepend_class, (t_method)OSCprepend_set, gensym("set"), A_SYMBOL, 0);
-	class_sethelpsymbol(OSCprepend_class, gensym("help-OSCrxtx"));
 }

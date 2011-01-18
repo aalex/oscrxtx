@@ -118,5 +118,4 @@ extern "C" void OSCrouter_setup(void)
 {
 	OSCrouter_class = class_new(gensym("OSCrouter"), (t_newmethod)OSCrouter_new, (t_method)OSCrouter_free, sizeof(t_OSCrouter), 0, A_GIMME, 0);
 	class_addanything(OSCrouter_class, (t_method) OSCrouter_route); 
-	class_sethelpsymbol(OSCrouter_class, gensym("help-OSCrxtx"));
 }

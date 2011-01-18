@@ -158,5 +158,4 @@ extern "C" void OSCparse_setup(void)
 	class_addanything(OSCparse_class, (t_method) OSCparse_compare); 
 	class_addmethod(OSCparse_class, (t_method)OSCparse_set, gensym("set"), A_SYMBOL, 0);
 	class_addmethod(OSCparse_class, (t_method)OSCparse_debug, gensym("debug"), A_DEFFLOAT, 0);
-	class_sethelpsymbol(OSCparse_class, gensym("help-OSCrxtx"));
 }

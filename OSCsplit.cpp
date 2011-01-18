@@ -125,5 +125,4 @@ extern "C" void OSCsplit_setup(void)
 {
 	OSCsplit_class = class_new(gensym("OSCsplit"), (t_newmethod)OSCsplit_new, (t_method)OSCsplit_free, sizeof(t_OSCsplit), 0, A_GIMME, 0);
 	class_addanything(OSCsplit_class, (t_method) OSCsplit_anything);
-	class_sethelpsymbol(OSCsplit_class, gensym("help-OSCrxtx"));
 }

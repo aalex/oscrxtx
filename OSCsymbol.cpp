@@ -71,5 +71,4 @@ extern "C" void OSCsymbol_setup(void)
 	OSCsymbol_class = class_new(gensym("OSCsymbol"), (t_newmethod)OSCsymbol_new, 0, sizeof(t_OSCsymbol), 0, A_GIMME, 0);
 	class_addbang(OSCsymbol_class, (t_method) OSCsymbol_bang);
 	class_addanything(OSCsymbol_class, (t_method) OSCsymbol_anything);
-	class_sethelpsymbol(OSCsymbol_class, gensym("help-OSCrxtx"));
 }
