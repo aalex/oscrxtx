@@ -223,7 +223,7 @@ static void OSCtx_disconnect(t_OSCtx *x)
 
 
 
-static void OSCtx_setAddress(t_OSCtx *x, t_symbol *addr, t_floatarg port)
+static void OSCtx_connect(t_OSCtx *x, t_symbol *addr, t_floatarg port)
 {
 	OSCtx_disconnect(x);
 	
@@ -427,7 +427,7 @@ static void OSCtx_send(t_OSCtx *x, t_symbol *s, int argc, t_atom *argv)
 		}
 	}
 		
-	else post("OSCtx ERROR: No destination has been defined using 'setAddress' method.");
+	else post("OSCtx ERROR: No destination has been defined using 'connect' method.");
 	
 }
 
@@ -530,7 +530,7 @@ static void OSCtx_free(t_OSCtx *x)
 extern "C" void OSCtx_setup(void)
 {
 	OSCtx_class = class_new(gensym("OSCtx"), (t_newmethod)OSCtx_new, (t_method)OSCtx_free, sizeof(t_OSCtx), CLASS_DEFAULT, A_GIMME, 0);
-	class_addmethod(OSCtx_class, (t_method) OSCtx_setAddress, gensym("setAddress"), A_SYMBOL, A_DEFFLOAT, 0); 
+	class_addmethod(OSCtx_class, (t_method) OSCtx_connect, gensym("connect"), A_SYMBOL, A_DEFFLOAT, 0); 
 	class_addmethod(OSCtx_class, (t_method) OSCtx_disconnect, gensym("disconnect"), A_DEFFLOAT, 0); 
 	class_addmethod(OSCtx_class, (t_method) OSCtx_sendpoint, gensym("sendpoint"), A_SYMBOL, A_DEFFLOAT, A_DEFFLOAT, 0);
 	//class_addmethod(OSCtx_class, (t_method) OSCtx_send_with_format, gensym("send"), A_GIMME, 0);

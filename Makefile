@@ -5,7 +5,7 @@ LIBRARY_NAME = oscrxtx
 
 # add your .c source files, one object per file, to the SOURCES
 # variable, help files will be included automatically
-SOURCES = OSCparse.cpp OSCprepend.cpp OSCrouter.cpp OSCrx.cpp OSCrx_threaded.cpp OSCsplit.cpp OSCsymbol.cpp OSCtx.cpp
+SOURCES = OSCparse.cpp OSCprepend.cpp OSCrouter.cpp OSCrx.cpp OSCsplit.cpp OSCsymbol.cpp OSCtx.cpp
 
 # list all pd objects (i.e. myobject.pd) files here, and their helpfiles will
 # be included automatically
