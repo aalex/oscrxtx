@@ -1,0 +1,8 @@
+<rdz> at least that is where i have it from.. 
+<_hc> aalex_laptop: you should output the status info out of the right-outlet like [comport], [hid], [mrpeach], etc.
+<_hc> outputting stuff to the Pd window isn't so useful
+<_hc> outputting out of an outlet means you can write programs to respond to the status
+<_hc> aalex_laptop: also, the example should include either an [import oscrxtx] or [declare -path ..] so that it finds the objects
+* servando (~ser@f052228004.adsl.alicedsl.de) has joined #dataflow
+<_hc> in the send-receive example, clicking the [setAddress localhost 9000( msg at the top gives me this: OSCtx ERROR: No destination has been defined using 'connect' method.
+<_hc> ah, you need to rename setAddress to connect in all the hlep patches
