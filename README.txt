@@ -13,9 +13,11 @@ multicast UDP.
 
 Authors
 -------
-Written by Mike Wozniewski <mike@mikewoz.com>
-Contributions by Alexandre Quessy <alexandre@quessy.net>
-
+Written by:
+  Mike Wozniewski <mike@mikewoz.com>
+Contributions by:
+  Alexandre Quessy <alexandre@quessy.net>
+  Zack Settel <zack@sheefa.net>
 
 Dependencies
 ------------
