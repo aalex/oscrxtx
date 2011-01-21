@@ -1,14 +1,11 @@
-#N canvas 43 56 834 630 10;
+#N canvas 342 126 834 630 10;
 #X text 327 124 1);
 #X text 386 155 2);
 #X obj 109 452 OSCrx 9000;
 #X obj 109 429 bng 15 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X text 129 428 <- a bang to any OSCrx prints status info;
 #X obj 361 192 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 389 224 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
 #X obj 389 204 OSCtx;
 #X msg 350 124 setAddress 224.0.0.100 9009;
 #X text 342 274 Multicast receiver:;
@@ -16,8 +13,6 @@
 #X text 639 157 2);
 #X obj 599 194 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144
 -1 -1;
-#X obj 642 225 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-11722;
 #X obj 642 206 OSCtx tcp;
 #X msg 405 155 /some/multicast message;
 #X msg 604 124 setAddress localhost 9001;
@@ -29,8 +24,6 @@
 #X text 116 155 2);
 #X obj 91 192 bng 12 250 50 0 empty empty empty 17 7 0 10 -262144 -1
 -1;
-#X obj 119 224 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
-1;
 #X obj 119 204 OSCtx;
 #X text 57 101 UDP sender:;
 #X text 327 101 Multicast sender:;
@@ -53,20 +46,28 @@ one is reference counted and share the same socket.;
 #X text 101 545 adds one more namespace to the front of the symbol
 ;
 #X obj 54 544 OSCtx;
-#X connect 2 0 17 0;
+#X obj 416 224 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X obj 693 225 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+11722;
+#X obj 146 224 tgl 12 0 empty empty empty 17 7 0 10 -262144 -1 -1 0
+1;
+#X text 129 428 <- a bang to any OSCrx prints detailed info to Pd window
+;
+#X connect 2 0 14 0;
 #X connect 3 0 2 0;
-#X connect 5 0 7 0;
-#X connect 7 0 6 0;
-#X connect 8 0 7 0;
-#X connect 12 0 14 0;
-#X connect 14 0 13 0;
-#X connect 15 0 7 0;
-#X connect 16 0 14 0;
-#X connect 18 0 19 0;
-#X connect 20 0 14 0;
-#X connect 23 0 25 0;
-#X connect 25 0 24 0;
-#X connect 29 0 25 0;
-#X connect 30 0 25 0;
-#X connect 32 0 34 0;
-#X connect 38 0 37 0;
+#X connect 4 0 5 0;
+#X connect 5 1 38 0;
+#X connect 6 0 5 0;
+#X connect 10 0 11 0;
+#X connect 11 1 39 0;
+#X connect 12 0 5 0;
+#X connect 13 0 11 0;
+#X connect 15 0 16 0;
+#X connect 17 0 11 0;
+#X connect 20 0 21 0;
+#X connect 21 1 40 0;
+#X connect 25 0 21 0;
+#X connect 26 0 21 0;
+#X connect 28 0 30 0;
+#X connect 34 0 33 0;

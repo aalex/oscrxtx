@@ -520,8 +520,8 @@ static void *OSCtx_new(t_symbol *s, int argc, t_atom *argv)
 		(x->proto == gensym("tcp")))
 	{
 		// create outlets:
-		x->outlet_status = outlet_new(&x->x_obj, 0);
 		x->outlet_recv = outlet_new(&x->x_obj, &s_list);
+		x->outlet_status = outlet_new(&x->x_obj, 0);
 
 		return(x);
 	}
